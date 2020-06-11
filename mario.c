@@ -23,8 +23,8 @@ int main(void)
         {
             printf("#");
         }
-        printf("  ");
-        for (int c = 1; c < i + 1; c++) //prints the asterisk(s)
+        printf("  "); //Keeps a space in between the pyramids (spaces out every line)
+        for (int c = 1; c < i + 1; c++) //prints the asterisk(s) (again, but with no spaces to back them up a specific way)
         {
             printf("#");
         }
