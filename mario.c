@@ -23,7 +23,7 @@ int main(void)
         {
             printf("#");
         }
-        printf(" ");
+        printf("  ");
         for (int c = 1; c < i + 1; c++) //prints the asterisk(s)
         {
             printf("#");
