@@ -38,7 +38,7 @@ int main(void)
     words++;
     letters = letters *100/words;
     sentences = sentences * 100/words;
-    index = 0.0588 * letters - 0.296 * sentences - 15.8 + 1;
+    index = 0.0588 * letters - 0.296 * sentences - 15.8;
     if (index>=1 && index<=16)
     {
         printf("Grade %d\n",index);
@@ -49,6 +49,6 @@ int main(void)
     }
     else
     {
-        printf("Grade 16+ \n");
+        printf("Grade 16+\n");
     }
 }
