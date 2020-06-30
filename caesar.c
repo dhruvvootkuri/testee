@@ -14,12 +14,14 @@ int main(int argc, string argv[])
     {
         printf("Usage: ./caesar key\n");
         x++;
+        return 1;
     }
 
     if (argc > 2 && x==0)
     {
         printf("Usage: ./caesar key\n");
         x++;
+        return 1;
     }
     if (argc==2)
     {
@@ -30,6 +32,7 @@ int main(int argc, string argv[])
 
                 printf("Usage: ./caesar key\n");
                 x++;
+                return 1;
             }
         }
         if (x==0)
