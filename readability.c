@@ -55,7 +55,7 @@ int main(void)
     index = round(index);
     if (index>=1 && index<=16)
     {
-        printf("Grade %f\n",index);
+        printf("Grade %d\n",(int)index);
     }
     else if (index<1)
     {
