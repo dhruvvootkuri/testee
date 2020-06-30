@@ -38,7 +38,7 @@ int main(void)
     words++;
     letters = letters *100/words;
     sentences = sentences * 100/words;
-    index = 0.0588 * letters - 0.296 * sentences - 15.8 + 1;
+    index = 0.0588 * letters - 0.296 * sentences - 15.8;
     index = round(index);
     if (index>=1 && index<=16)
     {
@@ -46,7 +46,7 @@ int main(void)
     }
     else if (index<1)
     {
-        printf("Before Grade 1 \n");
+        printf("Before Grade 1\n");
     }
     else
     {
