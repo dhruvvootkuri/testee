@@ -18,7 +18,6 @@ int main(void)
         j = strlen(read);
     }
     while (j<=0);
-
     for (int i=0 ; i<j ; i++)
     {
         if((read[i]>='a' && read[i]<='z') || (read[i]>='A' && read[i]<='Z'))
