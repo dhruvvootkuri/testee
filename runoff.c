@@ -67,7 +67,7 @@ int main(int argc, string argv[])
     for (int i = 0; i < voter_count; i++)
     {
         // Query for each rank
-        for (int j = 0; j < candidate_count;)
+        for (int j = 0; j < candidate_count; j++)
         {
             string name = get_string("Rank %i: ", j + 1);
 
@@ -75,9 +75,8 @@ int main(int argc, string argv[])
             if (!vote(i, j, name))
             {
                 printf("Invalid vote.\n");
-                continue;
+                return 4;
             }
-            j++;
         }
         printf("\n");
     }
