@@ -75,29 +75,30 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
 // Reflect image horizontally
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
+    printf("\nHeight: %d -- Width: %d\n", height, width);
     for (int i = 0; i < height; i++)
     {
-        for (int j = 0; j < width/2; j++)
+        for (int j = 0; j < (width/2) -1; j++)
         {
             //printf("height: %d\n", width);
-            printf("j: %d\n", j);
+            //printf("j: %d\n", j);
             int swaptemp1 = image[i][j].rgbtRed;
-            int swaptemp2 = image[i][width - j].rgbtRed;
+            int swaptemp2 = image[i][width - j - 1].rgbtRed;
             swap(&swaptemp1, &swaptemp2);
             image[i][j].rgbtRed = swaptemp1;
-            image[i][width - j].rgbtRed = swaptemp2;
+            image[i][width - j -1].rgbtRed = swaptemp2;
 
             swaptemp1 = image[i][j].rgbtBlue;
-            swaptemp2 = image[i][width - j].rgbtBlue;
+            swaptemp2 = image[i][width - j - 1].rgbtBlue;
             swap(&swaptemp1, &swaptemp2);
             image[i][j].rgbtBlue = swaptemp1;
-            image[i][width - j].rgbtBlue = swaptemp2;
+            image[i][width - j - 1].rgbtBlue = swaptemp2;
 
             swaptemp1 = image[i][j].rgbtGreen;
-            swaptemp2 = image[i][width - j].rgbtGreen;
+            swaptemp2 = image[i][width - j - 1].rgbtGreen;
             swap(&swaptemp1, &swaptemp2);
             image[i][j].rgbtGreen = swaptemp1;
-            image[i][width - j].rgbtGreen = swaptemp2;
+            image[i][width - j - 1].rgbtGreen = swaptemp2;
         }
     }
 }
