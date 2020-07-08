@@ -104,7 +104,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 }
 
 // Blur image
-void blur(int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE image_tmp[height][width], int write_tmp)
+void blur(int height, int width, RGBTRIPLE image[height][width])
 {
     float avgred;
     float avggreen;
@@ -177,15 +177,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE image
                 avgblue = round(avgblue);
             }
 
-            if (write_tmp == 1) {
-                image_tmp[i][j].rgbtRed = avgred;
-                image_tmp[i][j].rgbtGreen = avggreen;
-                image_tmp[i][j].rgbtBlue = avgblue;
-            } else {
-                image[i][j].rgbtRed = avgred;
-                image[i][j].rgbtGreen = avggreen;
-                image[i][j].rgbtBlue = avgblue;
-            }
+            image[i][j].rgbtRed = avgred;
+            image[i][j].rgbtGreen = avggreen;
+            image[i][j].rgbtBlue = avgblue;
 
         }
     }
