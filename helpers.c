@@ -9,6 +9,13 @@ int grayscaleavg;
 #include <math.h>
 #include <string.h>
 
+void swap(int *x, int *y)
+{
+    int temp = *x;
+    *x = *y;
+    *y = temp;
+}
+
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
 {
     for (int i = 0; i < height; i++)
@@ -68,11 +75,35 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
 // Reflect image horizontally
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
-    return;
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width/2; j++)
+        {
+            //printf("height: %d\n", width);
+            printf("j: %d\n", j);
+            int swaptemp1 = image[i][j].rgbtRed;
+            int swaptemp2 = image[i][width - j].rgbtRed;
+            swap(&swaptemp1, &swaptemp2);
+            image[i][j].rgbtRed = swaptemp1;
+            image[i][width - j].rgbtRed = swaptemp2;
+
+            swaptemp1 = image[i][j].rgbtBlue;
+            swaptemp2 = image[i][width - j].rgbtBlue;
+            swap(&swaptemp1, &swaptemp2);
+            image[i][j].rgbtBlue = swaptemp1;
+            image[i][width - j].rgbtBlue = swaptemp2;
+
+            swaptemp1 = image[i][j].rgbtGreen;
+            swaptemp2 = image[i][width - j].rgbtGreen;
+            swap(&swaptemp1, &swaptemp2);
+            image[i][j].rgbtGreen = swaptemp1;
+            image[i][width - j].rgbtGreen = swaptemp2;
+        }
+    }
 }
 
 // Blur image
-void blur(int height, int width, RGBTRIPLE image[height][width])
+void blur(int height, int width, RGBTRIPLE image[height][width], RGBTRIPLE image_tmp[height][width], int write_tmp)
 {
     float avgred;
     float avggreen;
@@ -144,9 +175,16 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 avgblue = (round(image[i][j].rgbtBlue) + round(image[i][j-1].rgbtBlue) + round(image[i][j+1].rgbtBlue) + round(image[i+1][j].rgbtBlue) + round(image[i+1][j+1].rgbtBlue) + round(image[i+1][j-1].rgbtBlue) + round(image[i-1][j-1].rgbtBlue) + round(image[i-1][j].rgbtBlue) + round(image[i-1][j+1].rgbtBlue)) / 9;
                 avgblue = round(avgblue);
             }
-            image[i][j].rgbtRed = avgred;
-            image[i][j].rgbtGreen = avggreen;
-            image[i][j].rgbtBlue = avgblue;
+
+            if (write_tmp == 1) {
+                image_tmp[i][j].rgbtRed = avgred;
+                image_tmp[i][j].rgbtGreen = avggreen;
+                image_tmp[i][j].rgbtBlue = avgblue;
+            } else {
+                image[i][j].rgbtRed = avgred;
+                image[i][j].rgbtGreen = avggreen;
+                image[i][j].rgbtBlue = avgblue;
+            }
 
         }
     }
