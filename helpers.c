@@ -77,27 +77,28 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
     for (int i = 0; i < height; i++)
     {
-        for (int j = 0; j < (width/2) -1; j++)
+        for (int j = 0; j <= (width/2) -1; j++)
         {
             //printf("height: %d\n", width);
             //printf("j: %d\n", j);
+            int y = width - j - 1;
             int swaptemp1 = image[i][j].rgbtRed;
-            int swaptemp2 = image[i][width - j].rgbtRed;
+            int swaptemp2 = image[i][y].rgbtRed;
             swap(&swaptemp1, &swaptemp2);
             image[i][j].rgbtRed = swaptemp1;
-            image[i][width - j].rgbtRed = swaptemp2;
+            image[i][y].rgbtRed = swaptemp2;
 
             swaptemp1 = image[i][j].rgbtBlue;
-            swaptemp2 = image[i][width - j].rgbtBlue;
+            swaptemp2 = image[i][y].rgbtBlue;
             swap(&swaptemp1, &swaptemp2);
             image[i][j].rgbtBlue = swaptemp1;
-            image[i][width - j].rgbtBlue = swaptemp2;
+            image[i][y].rgbtBlue = swaptemp2;
 
             swaptemp1 = image[i][j].rgbtGreen;
-            swaptemp2 = image[i][width - j].rgbtGreen;
+            swaptemp2 = image[i][y].rgbtGreen;
             swap(&swaptemp1, &swaptemp2);
             image[i][j].rgbtGreen = swaptemp1;
-            image[i][width - j].rgbtGreen = swaptemp2;
+            image[i][y].rgbtGreen = swaptemp2;
         }
     }
 }
