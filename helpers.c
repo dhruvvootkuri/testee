@@ -82,22 +82,22 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
             //printf("height: %d\n", width);
             //printf("j: %d\n", j);
             int swaptemp1 = image[i][j].rgbtRed;
-            int swaptemp2 = image[i][width - j - 1].rgbtRed;
+            int swaptemp2 = image[i][width - j].rgbtRed;
             swap(&swaptemp1, &swaptemp2);
             image[i][j].rgbtRed = swaptemp1;
-            image[i][width - j -1].rgbtRed = swaptemp2;
+            image[i][width - j].rgbtRed = swaptemp2;
 
             swaptemp1 = image[i][j].rgbtBlue;
-            swaptemp2 = image[i][width - j - 1].rgbtBlue;
+            swaptemp2 = image[i][width - j].rgbtBlue;
             swap(&swaptemp1, &swaptemp2);
             image[i][j].rgbtBlue = swaptemp1;
-            image[i][width - j - 1].rgbtBlue = swaptemp2;
+            image[i][width - j].rgbtBlue = swaptemp2;
 
             swaptemp1 = image[i][j].rgbtGreen;
-            swaptemp2 = image[i][width - j - 1].rgbtGreen;
+            swaptemp2 = image[i][width - j].rgbtGreen;
             swap(&swaptemp1, &swaptemp2);
             image[i][j].rgbtGreen = swaptemp1;
-            image[i][width - j - 1].rgbtGreen = swaptemp2;
+            image[i][width - j].rgbtGreen = swaptemp2;
         }
     }
 }
