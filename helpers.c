@@ -167,6 +167,24 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 avgblue = (round(image[i][j].rgbtBlue) + round(image[i][j+1].rgbtBlue) + round(image[i][j-1].rgbtBlue) + round(image[i+1][j-1].rgbtBlue) + round(image[i+1][j+1].rgbtBlue) + round(image[i+1][j].rgbtBlue)) / 6;
                 avgblue = round(avgblue);
             }
+            else if (i == height - 1)
+            {
+                avgred = (round(image[i][j].rgbtRed) + round(image[i][j+1].rgbtRed) + round(image[i][j-1].rgbtRed) + round(image[i-1][j-1].rgbtRed) + round(image[i-1][j+1].rgbtRed) + round(image[i-1][j].rgbtRed)) / 6;
+                avgred = round(avgred);
+                avggreen = (round(image[i][j].rgbtGreen) + round(image[i][j+1].rgbtGreen) + round(image[i][j-1].rgbtGreen) + round(image[i-1][j-1].rgbtGreen) + round(image[i-1][j+1].rgbtGreen) + round(image[i-1][j].rgbtGreen)) / 6;
+                avggreen = round(avggreen);
+                avgblue = (round(image[i][j].rgbtBlue) + round(image[i][j+1].rgbtBlue) + round(image[i][j-1].rgbtBlue) + round(image[i-1][j-1].rgbtBlue) + round(image[i-1][j+1].rgbtBlue) + round(image[i-1][j].rgbtBlue)) / 6;
+                avgblue = round(avgblue);
+            }
+            else if (j == width - 1)
+            {
+                avgred = (round(image[i][j].rgbtRed) + round(image[i][j-1].rgbtRed) + round(image[i-1][j-1].rgbtRed) + round(image[i-1][j].rgbtRed) + round(image[i+1][j].rgbtRed) + round(image[i+1][j-1].rgbtRed)) / 6;
+                avgred = round(avgred);
+                avggreen = (round(image[i][j].rgbtGreen) + round(image[i][j-1].rgbtGreen) + round(image[i-1][j-1].rgbtGreen) + round(image[i-1][j].rgbtGreen) + round(image[i+1][j].rgbtGreen) + round(image[i+1][j-1].rgbtGreen)) / 6;
+                avggreen = round(avggreen);
+                avgblue = (round(image[i][j].rgbtBlue) + round(image[i][j-1].rgbtBlue) + round(image[i-1][j-1].rgbtBlue) + round(image[i-1][j].rgbtBlue) + round(image[i+1][j].rgbtBlue) + round(image[i+1][j-1].rgbtBlue)) / 6;
+                avgblue = round(avgblue);
+            }
             if (i < height - 1 && i > 0 && j < width - 1 && j > 0)
             {
                 avgred = (round(image[i][j].rgbtRed) + round(image[i][j-1].rgbtRed) + round(image[i][j+1].rgbtRed) + round(image[i+1][j].rgbtRed) + round(image[i+1][j+1].rgbtRed) + round(image[i+1][j-1].rgbtRed) + round(image[i-1][j-1].rgbtRed) + round(image[i-1][j].rgbtRed) + round(image[i-1][j+1].rgbtRed)) / 9;
