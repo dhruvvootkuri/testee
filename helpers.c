@@ -106,6 +106,89 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            int blue_sum = 0;
+            int green_sum = 0;
+            int red_sum = 0;
+            
+            RGBTRIPLE avg;
+            int num_values_considered = 1;
+            
+            // We need to first consider the pixel itself.
+            blue_sum += image[i][j].rgbtBlue;
+            green_sum += image[i][j].rgbtGreen;
+            red_sum += image[i][j].rgbtRed;
+            
+            const int look_up = (i > 0);
+            const int look_down = (i < (height - 1));
+            const int look_left = (j > 0);
+            const int look_right = (j < (width - 1));
+            
+            if (look_up) {
+                blue_sum += image[i - 1][j].rgbtBlue;
+                green_sum += image[i - 1][j].rgbtGreen;
+                red_sum += image[i - 1][j].rgbtRed;
+                num_values_considered++;
+                
+                if (look_left) {
+                    blue_sum += image[i - 1][j - 1].rgbtBlue;
+                    green_sum += image[i - 1][j - 1].rgbtGreen;
+                    red_sum += image[i - 1][j - 1].rgbtRed;
+                    num_values_considered++;
+                }
+                
+                if (look_right) {
+                    blue_sum += image[i - 1][j + 1].rgbtBlue;
+                    green_sum += image[i - 1][j + 1].rgbtGreen;
+                    red_sum += image[i - 1][j + 1].rgbtRed;
+                    num_values_considered++;
+                }
+            }
+            
+            if (look_down) {
+                blue_sum += image[i + 1][j].rgbtBlue;
+                green_sum += image[i + 1][j].rgbtGreen;
+                red_sum += image[i + 1][j].rgbtRed;
+                num_values_considered++;
+                
+                if (look_left) {
+                    blue_sum += image[i + 1][j - 1].rgbtBlue;
+                    green_sum += image[i + 1][j - 1].rgbtGreen;
+                    red_sum += image[i + 1][j - 1].rgbtRed;
+                    num_values_considered++;
+                }
+                
+                if (look_right) {
+                    blue_sum += image[i + 1][j + 1].rgbtBlue;
+                    green_sum += image[i + 1][j + 1].rgbtGreen;
+                    red_sum += image[i + 1][j + 1].rgbtRed;
+                    num_values_considered++;
+                }
+            }
+            
+            if (look_left) {
+                blue_sum += image[i][j - 1].rgbtBlue;
+                green_sum += image[i][j - 1].rgbtGreen;
+                red_sum += image[i][j - 1].rgbtRed;
+                num_values_considered++;
+            }
+            
+            if (look_right) {
+                blue_sum += image[i][j + 1].rgbtBlue;
+                green_sum += image[i][j + 1].rgbtGreen;
+                red_sum += image[i][j + 1].rgbtRed;
+                num_values_considered++;
+            }
+            
+            image[i][j].rgbtBlue = round(blue_sum / num_values_considered);
+            image[i][j].rgbtGreen = round(green_sum / num_values_considered);
+            image[i][j].rgbtRed = round(red_sum / num_values_considered);
+        }
+    }
+
+    return;
+    
     float avgred;
     float avggreen;
     float avgblue;
