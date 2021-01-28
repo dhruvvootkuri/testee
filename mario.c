@@ -1,3 +1,5 @@
+//This is an assignment in which I make a right triangle based on the height given, where the hypotenuse faces to the left.
+
 #include <stdio.h>
 #include <cs50.h>
 #include <math.h>
@@ -23,7 +25,7 @@ int main(void)
         {
             printf("#");
         }
-        printf("\n"); //new line
+        printf("\n");
     }
 
 }
