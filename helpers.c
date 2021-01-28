@@ -1,9 +1,9 @@
+//In this program, I made a script in which images can be filtered.  They can be blurred, turned black and white, made sepia, or even reflected!
+
 #include "helpers.h"
 #include <stdio.h>
 
-// Convert image to grayscale
-
-int grayscaleavg;
+int grayscaleavg; //This is a variable I will be using later in grayscale
 
 #include <stdio.h>
 #include <math.h>
@@ -16,18 +16,19 @@ void swap(int *x, int *y)
     *y = temp;
 }
 
-void grayscale(int height, int width, RGBTRIPLE image[height][width])
+void grayscale(int height, int width, RGBTRIPLE image[height][width]) //Every filter fucntion consists of 3 arguments, the height and width of the image, in pixels, and an array of the image, which shows the RGB value of each pixel at their location in height,width 
 {
-    for (int i = 0; i < height; i++)
+    for (int i = 0; i < height; i++) //This loops for every row
     {
-        for (int j = 0; j < width; j++)
+        for (int j = 0; j < width; j++) //This loops for every column, making image[i][j] the pixel we are currently examining
         {
-            float avg = (round(image[i][j].rgbtRed) + round(image[i][j].rgbtBlue) + round(image[i][j].rgbtGreen)) / 3;
+            float avg = (round(image[i][j].rgbtRed) + round(image[i][j].rgbtBlue) + round(image[i][j].rgbtGreen)) / 3;  //My logic for this was to get the average of the r,g,and b values and make that the value for all of them.  In order for something to be a shade of gray, the red, green, and blue needs to be equal
             avg = round(avg);
             image[i][j].rgbtRed = avg;
             image[i][j].rgbtGreen = avg;
             image[i][j].rgbtBlue = avg;
         }
+
     }
 }
 
@@ -38,7 +39,7 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int j = 0; j < width; j++)
         {
-            float ogred = image[i][j].rgbtRed;
+            float ogred = image[i][j].rgbtRed; //I was given this formula by the professors of CS50.  I still don't understand the formula, heh heh, but you can still see how I did it using the same logic as grayscale.  To be honest, the formula in this isn't the takeaway, it's how I accessed the rgb values and location of the pixel in the first place. 
             float ogblue = image[i][j].rgbtBlue;
             float oggreen = image[i][j].rgbtGreen;
             int sepiared = round(.393 * ogred + .769 * oggreen + .189 * ogblue);
@@ -81,7 +82,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
         {
             //printf("height: %d\n", width);
             //printf("j: %d\n", j);
-            int y = width - j - 1;
+            int y = width - j - 1;  //I am unsure if you noticed, but this is the reason for the function I wrote at the top, the swap function. I neded this so i could switch the rgb values of two pixels that are corresponding by the line of reflection, which is the center column.
             int swaptemp1 = image[i][j].rgbtRed;
             int swaptemp2 = image[i][y].rgbtRed;
             swap(&swaptemp1, &swaptemp2);
@@ -113,8 +114,8 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int j = 0; j < width; j++)
         {
-            float blue_sum = 0;
-            float green_sum = 0;
+            float blue_sum = 0;  //This was the hardest one out of them all.  With blur, I needed to take the values of the pixels AROUND it, which was difficult in the event of corners or edges.
+            float green_sum = 0; //It may not be extremely efficient, but from my knowledge of C at the time, it was the best solution.
             float red_sum = 0;
 
             RGBTRIPLE avg;
