@@ -1,3 +1,5 @@
+//This was my first assignment for the course.  It's just a simple print function. Enjoy!
+
 #include <stdio.h>
 #include <cs50.h>
 
