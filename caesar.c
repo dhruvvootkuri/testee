@@ -1,3 +1,7 @@
+//This program is used to cipher text.  The user will input a key(int) and a plaintext(str). 
+//The code then changes every letter in the plaintext by they key.  For example, if we had the key 1 and plaintext "Hello",
+//then our ciphertext will be "Ifmmp" because 1 past H is I, 1 past e is f, 1 past l is m, and 1 past o is p!
+
 #include <stdio.h>
 #include <cs50.h>
 #include <math.h>
