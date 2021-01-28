@@ -1,3 +1,5 @@
+//This is similar to mario.c/less, but instead, it builds an iscoceles triangle based on the given height.
+
 #include <stdio.h>
 #include <cs50.h>
 #include <math.h>
